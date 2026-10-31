@@ -1,0 +1,29 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="#0b1220", pad="0.25", nodesep="0.35", ranksep="0.42", fontname="Arial", label="GRIDTWIN-24 | Forecast-to-Physics Energy Intelligence", labelloc=t, fontsize=22, fontcolor="#eaf2ff"];
+  node [shape=box, style="rounded,filled", color="#31506c", fillcolor="#14243a", fontcolor="#eaf2ff", fontname="Arial", fontsize=11, margin="0.18,0.12"];
+  edge [color="#56c7d8", penwidth=1.6, arrowsize=0.75, fontname="Arial", fontcolor="#b9d7e8", fontsize=9];
+  data [label="Organiser hourly demand dataset\n(timestamp · demand · related features)", fillcolor="#173a52"];
+  prep [label="Data audit + hourly canonicalisation\nTimezone · gaps · units · duplicates"];
+  model [label="24-hour forecasting engine\nLags · rolling stats · calendar · valid covariates", fillcolor="#154b4a"];
+  eval [label="Rolling-origin evaluation\nSeasonal-naive baseline · MAE / RMSE / WAPE\nPeak recall · interval coverage"];
+  api [label="Forecast API\n24 hourly points · uncertainty · peak flags", fillcolor="#154b4a"];
+  subgraph cluster_site {
+    label="LOCAL-SITE SCENARIO (separate from grid forecast)"; color="#456b80"; fontcolor="#b9d7e8"; style="rounded,dashed"; fontsize=12;
+    profile [label="Local site profile + tariff\nflexible tasks · capacity · optional PV / battery"];
+    opt [label="Deterministic scenario / scheduler\nCost · peak · comfort constraints"];
+    profile -> opt;
+  }
+  hil [label="Human-operated MQTT console\nExplicit confirmation + non-retained command", fillcolor="#51351f"];
+  rig [label="ESP32 + INA3221\n3 fused 12 V DC branches\nMOSFET load switching", fillcolor="#51351f"];
+  tele [label="Measured voltage / current / power\nload state · fault state", fillcolor="#51351f"];
+  ui [label="GRIDTWIN dashboard\nforecast · comparison · scenarios · live rig", fillcolor="#173a52"];
+  gemma [label="Gemma 4 operator agent\nfunction calls only · no invented forecasts", fillcolor="#46345b"];
+  data -> prep -> model -> eval -> api -> ui;
+  api -> opt [label="forecast context", fontcolor="#b9d7e8"];
+  opt -> hil [label="operator reviews plan"];
+  hil -> rig [label="human-confirmed MQTT"];
+  rig -> tele -> ui;
+  gemma -> api [label="read tools"];
+  gemma -> opt [label="scenario tools"];
+  ui -> gemma [dir=back, label="operator questions", fontcolor="#b9d7e8"];
+}

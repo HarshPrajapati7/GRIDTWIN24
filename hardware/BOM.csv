@@ -1,0 +1,18 @@
+item,quantity,purpose,selection_notes,priority
+ESP32 DevKit,1,Wi-Fi telemetry and load control,Use supported board and local arming switch,P0
+INA3221 3-channel breakout,1,Measure bus voltage and three branch currents,Confirm shunt values and continuous current / thermal limits for the exact board,P0
+Certified enclosed 12V DC adapter,1,Current-limited low-voltage bus,No exposed mains wiring; current limit must match the whole bench,P0
+12V DC LED load,1,Demonstration load,Low power and known current draw,P0
+12V DC fan,1,Demonstration load,Check startup current,P0
+12V DC load module,1,Third demonstration channel,Use low power and an enclosure where needed,P1
+Logic-level MOSFET driver module,3,Switch DC branches,Must work from 3.3V logic; check current voltage heat and inrush,P0
+Gate-to-source pulldown resistor,3,Keep MOSFET gate OFF while ESP32 is booting or disconnected,Select value for exact MOSFET/driver design; typical starting point 100 kOhm,P0
+Branch fuse and holder,3,Branch overcurrent protection,Size to branch, wire and component ratings,P0
+Master fuse,1,Protect 12V feed,Size to supply and wire ratings,P0
+Normally-closed E-stop switch,1,Physically interrupt 12V load bus,DC-rated and wired so open circuit disables loads,P0
+Local ARM switch,1,Local hardware arming,Software cannot arm device,P0
+Terminal blocks and wire,as needed,Safe wiring and strain relief,Use proper gauge and insulated enclosure,P0
+Optional 10-20W PV panel,1,Visible renewable input,Only add with supervised low-voltage setup,P2
+Optional compatible charge controller,1,PV / battery management,Must match panel and battery chemistry,P2
+Optional protected 12V LiFePO4 pack,1,Small energy storage demonstration,Use complete protected pack / BMS and manufacturer instructions,P2
+Optional INA3221 second board,1,More measurement channels,Only if additional branch metering is required,P3

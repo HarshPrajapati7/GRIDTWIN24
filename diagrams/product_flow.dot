@@ -1,0 +1,14 @@
+digraph P {
+  graph [rankdir=LR, bgcolor="#0b1220", pad="0.25", nodesep="0.35", ranksep="0.45", fontname="Arial", label="GRIDTWIN-24 | Product user journey", labelloc=t, fontsize=20, fontcolor="#eaf2ff"];
+  node [shape=box, style="rounded,filled", color="#46617d", fillcolor="#14243a", fontcolor="#eaf2ff", fontname="Arial", fontsize=10, margin="0.16,0.12"];
+  edge [color="#56c7d8", penwidth=1.5, arrowsize=0.75, fontname="Arial", fontcolor="#b9d7e8", fontsize=9];
+  a [label="Connect data\nCSV / meter / gateway"];
+  b [label="See tomorrow\n24h forecast + peaks"];
+  c [label="Understand why\nDrivers + uncertainty"];
+  d [label="Test a change\nTariff / tasks / capacity"];
+  e [label="Approve plan\nHuman review"];
+  f [label="Execute safely\nCertified devices / HIL bench"];
+  g [label="Measure outcome\nActual kWh / peak / audit"];
+  h [label="Improve model\nLocal calibration"];
+  a -> b -> c -> d -> e -> f -> g -> h -> b;
+}

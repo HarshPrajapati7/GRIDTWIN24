@@ -1,0 +1,25 @@
+digraph B {
+  graph [rankdir=LR, bgcolor="#0b1220", pad="0.25", nodesep="0.40", ranksep="0.55", fontname="Arial", label="GRIDTWIN-24 | Local PV + Battery Dispatch Simulation", labelloc=t, fontsize=21, fontcolor="#eaf2ff"];
+  node [shape=box, style="rounded,filled", color="#31506c", fillcolor="#14243a", fontcolor="#eaf2ff", fontname="Arial", fontsize=11, margin="0.20,0.15"];
+  edge [color="#56c7d8", penwidth=1.7, arrowsize=0.75, fontname="Arial", fontcolor="#b9d7e8", fontsize=9];
+  load [label="Local-site demand\n24 hourly kW values", fillcolor="#173a52"];
+  pv [label="PV generation\n24 hourly kW values", fillcolor="#173a52"];
+  tariff [label="Import / export tariffs\nDemand charge (optional)", fillcolor="#173a52"];
+  subgraph cluster_solver {
+    label="DETERMINISTIC LINEAR PROGRAMME"; color="#456b80"; fontcolor="#b9d7e8"; style="rounded,dashed"; fontsize=12;
+    balance [label="Power balance\nGrid + PV + discharge = load + charge"];
+    soc [label="Battery state dynamics\nSOC, efficiency, reserve and power limits"];
+    objective [label="Cost objective\nEnergy + demand charge + degradation"];
+    lp [label="HiGHS LP solver\n24-hour schedule", fillcolor="#154b4a"];
+    balance -> lp;
+    soc -> lp;
+    objective -> lp;
+  }
+  out [label="Auditable outputs\nGrid import / export · charge / discharge\nSOC profile · peak · estimated cost delta", fillcolor="#46345b"];
+  load -> balance;
+  pv -> balance;
+  tariff -> objective;
+  lp -> out;
+  end [label="Terminal SOC = initial SOC\nNo free depletion of stored energy", fillcolor="#51351f"];
+  end -> lp [style=dashed, color="#e7a755", fontcolor="#e7a755", label="constraint"];
+}

@@ -1,0 +1,9 @@
+# Map the organiser-provided dataset to these canonical names after inspection.
+# Do not assume these source columns exist; inspect the actual file first.
+timestamp_column: timestamp
+demand_column: demand
+# Required only if source timestamps are timezone-naive. Verify with the data owner.
+timezone: Asia/Kolkata
+optional_columns: []
+frequency: 1h
+unit: kW

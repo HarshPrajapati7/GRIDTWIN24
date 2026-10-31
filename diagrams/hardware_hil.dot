@@ -1,0 +1,25 @@
+digraph H {
+  graph [rankdir=LR, bgcolor="#0b1220", pad="0.3", nodesep="0.35", ranksep="0.5", fontname="Arial", label="GRIDTWIN-24 | 12 V DC energy bench design (not mains-connected)", labelloc=t, fontsize=20, fontcolor="#eaf2ff"];
+  node [shape=box, style="rounded,filled", color="#46617d", fillcolor="#14243a", fontcolor="#eaf2ff", fontname="Arial", fontsize=10, margin="0.15,0.10"];
+  edge [color="#56c7d8", penwidth=1.5, arrowsize=0.7, fontname="Arial", fontcolor="#b9d7e8", fontsize=9];
+  app [label="Separate human operator console\nExplicit typed confirmation\nnon-retained MQTT", fillcolor="#173a52"];
+  esp [label="ESP32 gateway\nWi-Fi / MQTT\nphysical ARM + E-stop input", fillcolor="#46345b"];
+  sensor [label="INA3221 3-channel monitor\nBus voltage + branch current\nconfirm shunt / board rating", fillcolor="#154b4a"];
+  supply [label="Certified current-limited\n12 V DC supply", fillcolor="#51351f"];
+  fuse [label="Physical E-stop\n+ master fuse", fillcolor="#702f2f"];
+  bus [label="12 V DC bus", fillcolor="#51351f"];
+  m1 [label="Branch fuse + shunt\nMOSFET driver\nLED load"];
+  m2 [label="Branch fuse + shunt\nMOSFET driver\nDC fan"];
+  m3 [label="Branch fuse + shunt\nMOSFET driver\nDC load 3"];
+  app -> esp [label="non-retained command\noperator confirmed"];
+  esp -> app [label="telemetry / state confirmation"];
+  esp -> m1 [label="GPIO gate"];
+  esp -> m2 [label="GPIO gate"];
+  esp -> m3 [label="GPIO gate"];
+  supply -> fuse -> bus;
+  bus -> m1; bus -> m2; bus -> m3;
+  sensor -> app [label="measured V / A / W", dir=back];
+  m1 -> sensor [style=dashed, label="current measurement"];
+  m2 -> sensor [style=dashed];
+  m3 -> sensor [style=dashed];
+}
