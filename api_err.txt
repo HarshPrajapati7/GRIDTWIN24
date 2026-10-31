@@ -1,0 +1,10 @@
+INFO:     Started server process [8320]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+C:\Users\harsh\AppData\Roaming\Python\Python313\site-packages\joblib\externals\loky\backend\resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+C:\Users\harsh\AppData\Roaming\Python\Python313\site-packages\joblib\externals\loky\backend\resource_tracker.py:375: UserWarning: resource_tracker: C:\Users\harsh\AppData\Local\Temp\joblib_memmapping_folder_8320_45bdf59690c44fcebeeebb0a9e1f3dc2_8bb17f40c1ba4c149334723d578abb6a: FileNotFoundError(2, 'The system cannot find the file specified')
+  warnings.warn(f"resource_tracker: {name}: {e!r}")
+C:\Users\harsh\AppData\Roaming\Python\Python313\site-packages\joblib\externals\loky\backend\resource_tracker.py:375: UserWarning: resource_tracker: C:\Users\harsh\AppData\Local\Temp\joblib_memmapping_folder_8320_45bdf59690c44fcebeeebb0a9e1f3dc2_ac7bcaeb5830421eaef2afbe20716f5b: FileNotFoundError(2, 'The system cannot find the file specified')
+  warnings.warn(f"resource_tracker: {name}: {e!r}")
