@@ -7,3 +7,5 @@ models/*.joblib
 outputs/*
 !outputs/.gitkeep
 .streamlit/secrets.toml
+api_*.txt
+
