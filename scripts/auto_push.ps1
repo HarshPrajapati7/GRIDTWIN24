@@ -19,7 +19,7 @@ while ($true) {
         }
 
         # Check if local is ahead of remote
-        $ahead = git rev-list @{u}..HEAD 2>$null
+        $ahead = git rev-list "@{u}..HEAD" 2>$null
         if ($ahead -or $status) {
             Write-Host "[$timestamp] Pushing to origin main..." -ForegroundColor Green
             git push origin main
