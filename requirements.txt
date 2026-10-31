@@ -7,6 +7,7 @@ plotly>=5.18
 streamlit>=1.32
 fastapi>=0.110
 uvicorn>=0.27
+python-multipart>=0.0.9
 paho-mqtt>=2.0
 google-genai>=1.0
 pyyaml>=6.0
