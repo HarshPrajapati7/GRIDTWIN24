@@ -241,3 +241,16 @@ def run_battery(req: BatteryRequest) -> dict[str, Any]:
         return result
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"Battery optimisation failed: {exc}") from exc
+
+
+
+# ---------------------------------------------------------------------------
+# Serve the built React app (production). In development the Vite dev server on
+# :5173 proxies /api here instead, so this mount is only used after
+# `npm run build`. Declared last so it never shadows the /api routes above.
+# ---------------------------------------------------------------------------
+from fastapi.staticfiles import StaticFiles  # noqa: E402
+
+_DIST = ROOT / "frontend" / "dist"
+if _DIST.is_dir():
+    app.mount("/", StaticFiles(directory=str(_DIST), html=True), name="spa")
